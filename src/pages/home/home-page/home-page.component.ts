@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Contact{
-  name:string,
-  sex:string,
-  mobile:string,
-  age?:number
-  random?:number
+interface Asset {
+  no: number,
+  name: string,
+  classification: string,
+  brand: string
+  price: number
+  addTime: string
 }
 
 @Component({
@@ -13,52 +14,86 @@ interface Contact{
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
+
 export class HomePageComponent implements OnInit {
-  contacts:Array<Contact>;
-  firstLine:string;
+  assets: Array<Asset>;
   constructor() {
-   this.getContacts()
+    this.getAssets()
   }
-  
-  getContacts(){
-     this.contacts = [
-      {name:"LiuYuyang",sex:"M",mobile:"1316666666",age:20},
-      {name:"Wangkai",sex:"F",mobile:"1316666667"},
-      {name:"Yaoming",sex:"M",mobile:"1316666668"},
-      {name:"Yaoming",sex:"F",mobile:"1316666668"},
+
+  getAssets() {
+    this.assets = [
+      {
+        no: 1, name: "ONLY黑色连帽卫衣",
+        classification: "上衣",
+        brand: "ONLY",
+        price: 244, addTime: "2016-03-03"
+      },{
+        no: 2, name: "ONLY荷叶边连衣裙",
+        classification: "裙装",
+        brand: "ONLY",
+        price: 249, addTime: "2016-06-07"
+      },{
+        no: 3, name: "ONLY修身小脚牛仔裤",
+        classification: "裤装",
+        brand: "ONLY",
+        price: 199, addTime: "2016-10-05"
+      }, {
+        no: 4, name: "平底绣花布鞋",
+        classification: "鞋靴",
+        brand: "老北京布鞋",
+        price: 29, addTime: "2016-10-05"
+      }, {
+        no: 5, name: "恒源祥夏用披肩",
+        classification: "围巾",
+        brand: "恒源祥",
+        price: 138, addTime: "2017-07-03"
+      }, {
+        no: 6, name: "ZARA几何图形印花晚宴包",
+        classification: "包包",
+        brand: "ZARA",
+        price: 399, addTime: "2017-08-10"
+      }
     ]
-    this.firstLine =`第一个联系人是：${this.contacts[0].name}`
   }
 
-  addContact(){
-    let newContact = {
-      name:"Rita",
-      sex:"F",
-      mobile:"13677777777"
-    }
-    this.contacts.push(newContact)
+  selectSortType(){
+    alert()
   }
 
-  asc(){
+  priceAsc() {
     // 正序排列
     // 数组操作API，https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-    this.contacts.sort((a,b)=>{
-      if(a.sex>b.sex){
+    this.assets.sort((a, b) => {
+      if (a.price > b.price) {
         return 1
-      }else{
+      } else {
         return -1
       }
     })
-}
-
-
-  desc(){
-    // 逆序排列    
   }
-  random(){
+
+  priceDesc() {
+    // 逆序排列   
+    this.assets.sort((a, b) => {
+      if (a.price < b.price) {
+        return 1
+      } else {
+        return -1
+      }
+    }) 
+  }
+
+  random() {
     // 随机排列
     // 常用数学计算API，https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
+    this.assets.sort((a, b) => {
+      let randomVal = Math.random()-0.5;
+      return randomVal
+      }
+    ) 
   }
+  
   ngOnInit() {
   }
 

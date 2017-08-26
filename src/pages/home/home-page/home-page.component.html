@@ -1,11 +1,31 @@
+<h1>我的衣帽间</h1>
+<div>
+    <p>
+        <button (click)="random()">价格随机</button>
+        <button (click)="priceDesc()">价格倒序</button>
+        <button (click)="priceAsc()">价格正序</button>
+    </p>
 
-<button (click)="addContact()">添加新联系人</button>
-<button (click)="asc()">正序</button>
-<button (click)="desc()">逆序</button>
-<button (click)="random()">倒序</button>
-
-<div>第一个联系人是：{{this.contacts[0].name}}</div>
-<div>{{firstLine}}</div>
-<ul>
-    <li *ngFor="let user of contacts">{{user.name}} {{user.sex}} {{user.mobile}}</li>
-</ul>
+    <table cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <td>编号</td>
+                <td>宝贝名称</td>
+                <td>类别</td>
+                <td>品牌</td>
+                <td>价格</td>
+                <td>入手时间</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let asset of assets">
+                <td>{{asset.no}}</td>
+                <td>{{asset.name}}</td>
+                <td>{{asset.classification}}</td>
+                <td>{{asset.brand}}</td>
+                <td>{{asset.price}}</td>
+                <td>{{asset.addTime}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
